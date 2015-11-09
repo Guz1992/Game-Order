@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="ionic/css/ionic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+    <script src="intelxdk.js"></script>
+    <script src="cordova.js"></script>
+    <script src="xhr.js"></script>
+    <script src="xdk/init-dev.js"></script>
+    <script type="application/javascript" src="lib/jquery.min.js"></script>
+    <script type="application/javascript" src="marginal/marginal-position.js"></script>
+    <script type="application/javascript" src="ionic/js/ionic.bundle.js"></script>
+    <script type="application/javascript" src="js/index_init_services.js"></script>
+  </head>
+
+  <body ng-app="myApp">
+
+    <div class="upage" id="mainpage">
+      <div class="upage-outer">
+        <div class="upage-content ac0 content-area vertical-col left" id="page_8_69">
+
+          <div class="button-bar widget uib_w_2 d-margins" data-uib="ionic/button_bar" data-ver="0">
+            <button class="button widget uib_w_3" data-uib="ionic/button" data-ver="0" id="create-game">Criar Jogo</button>
+            <button class="button widget uib_w_4 ion ion-android-add" data-uib="ionic/button" data-ver="0" id="add-player">Jogador</button>
+          </div>
+          <label class="item item-input widget uib_w_5 d-margins" data-uib="ionic/input" data-ver="0">
+            <input type="number" placeholder="Quantidade de jogadores">
+          </label>
+          <ion-list class="widget uib_w_6 d-margins" data-uib="ionic/list" data-ver="0">
+            <ion-item class="item widget uib_w_7" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
+            <ion-item class="item widget uib_w_8" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
+            <ion-item class="item widget uib_w_9" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
+          </ion-list>
+        </div>
+        <ion-header-bar class="bar inner-element uib_w_1 bar-positive bar-header" data-uib="ionic/header" data-ver="0">
+          <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+          <h1 class="title">Game Order</h1>
+          <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+        </ion-header-bar>
+      </div>
+    </div>
+    <div class="upage hidden" id="uib_page_game">
+      <div class="upage-outer">
+        <div class="upage-content ac0 content-area vertical-col left"></div>
+        <ion-header-bar class="bar inner-element uib_w_10 bar-positive bar-header" data-uib="ionic/header" data-ver="0" align-title="center">
+          <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+          <h1 class="title">Jogo em Andamento</h1>
+          <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+        </ion-header-bar>
+      </div>
+    </div>
+  </body>
+
+</html>
