@@ -6,16 +6,184 @@
       "projectTypeName": "com.intel.xdk.projecttype.webapp",
       "src": "webapp/template-blank-ad-project/sample.zip",
       "projectGuid": "1ab047f9-53ca-430c-a481-aef47bdd4568",
-      "lastModifiedDate": 1446918757652,
+      "lastModifiedDate": 1447155293487,
       "creationDate": 1446918177396
     },
     "XDK-app-designer": "true",
     "sourceDirectory": "www",
     "startFile": "index.html",
     "projectFiles": {},
-    "projectDirectories": {},
+    "projectDirectories": {
+      "www/xdk/services": {
+        "settings": {
+          "project": {
+            "XDK-generated": "true"
+          }
+        }
+      }
+    },
     "libraries": [],
-    "serviceMethods": [],
+    "serviceMethods": [
+      {
+        "methodName": "player",
+        "serviceName": "sandbox",
+        "resultType": "array",
+        "selectedPaths": {
+          "[0].nome": "string"
+        },
+        "cachedResult": [
+          {
+            "id": 1,
+            "sigla": "AC",
+            "nome": "Acre"
+          },
+          {
+            "id": 2,
+            "sigla": "AL",
+            "nome": "Alagoas"
+          },
+          {
+            "id": 3,
+            "sigla": "AP",
+            "nome": "Amapá"
+          },
+          {
+            "id": 4,
+            "sigla": "AM",
+            "nome": "Amazonas"
+          },
+          {
+            "id": 5,
+            "sigla": "BA",
+            "nome": "Bahia"
+          },
+          {
+            "id": 6,
+            "sigla": "CE",
+            "nome": "Ceará"
+          },
+          {
+            "id": 7,
+            "sigla": "DF",
+            "nome": "Distrito Federal"
+          },
+          {
+            "id": 8,
+            "sigla": "ES",
+            "nome": "Espírito Santo"
+          },
+          {
+            "id": 10,
+            "sigla": "GO",
+            "nome": "Goiás"
+          },
+          {
+            "id": 11,
+            "sigla": "MA",
+            "nome": "Maranhão"
+          },
+          {
+            "id": 12,
+            "sigla": "MT",
+            "nome": "Mato Grosso"
+          },
+          {
+            "id": 13,
+            "sigla": "MS",
+            "nome": "Mato Grosso do Sul"
+          },
+          {
+            "id": 14,
+            "sigla": "MG",
+            "nome": "Minas Gerais"
+          },
+          {
+            "id": 15,
+            "sigla": "PA",
+            "nome": "Pará"
+          },
+          {
+            "id": 16,
+            "sigla": "PB",
+            "nome": "Paraíba"
+          },
+          {
+            "id": 17,
+            "sigla": "PR",
+            "nome": "Paraná"
+          },
+          {
+            "id": 18,
+            "sigla": "PE",
+            "nome": "Pernambuco"
+          },
+          {
+            "id": 19,
+            "sigla": "PI",
+            "nome": "Piauí"
+          },
+          {
+            "id": 20,
+            "sigla": "RJ",
+            "nome": "Rio de Janeiro"
+          },
+          {
+            "id": 21,
+            "sigla": "RN",
+            "nome": "Rio Grande do Norte"
+          },
+          {
+            "id": 22,
+            "sigla": "RS",
+            "nome": "Rio Grande do Sul"
+          },
+          {
+            "id": 23,
+            "sigla": "RO",
+            "nome": "Rondônia"
+          },
+          {
+            "id": 9,
+            "sigla": "RR",
+            "nome": "Roraima"
+          },
+          {
+            "id": 25,
+            "sigla": "SC",
+            "nome": "Santa Catarina"
+          },
+          {
+            "id": 26,
+            "sigla": "SP",
+            "nome": "São Paulo"
+          },
+          {
+            "id": 27,
+            "sigla": "SE",
+            "nome": "Sergipe"
+          },
+          {
+            "id": 24,
+            "sigla": "TO",
+            "nome": "Tocantins"
+          }
+        ],
+        "codeGenerationParams": {
+          "apiName": "sandbox",
+          "endpointName": "Methods",
+          "methodName": "GET",
+          "namespace": "intel.xdk.services."
+        },
+        "parameters": {
+          "URL": "http://rest.takemybox.com/api/uf"
+        },
+        "requiredLibraries": [
+          "xhr.js",
+          "xdk/services/service-credentials.js",
+          "xdk/services/service-methods.js"
+        ]
+      }
+    ],
     "cordovaPluginsDirectory": "plugins",
     "cordovaPlugins": [],
     "buildConfigurations": {

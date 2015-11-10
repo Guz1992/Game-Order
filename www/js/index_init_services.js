@@ -12,3 +12,5 @@
 	$controllerProvider.allowGlobals();
 }]);
 
+
+data_support.ready(intel.xdk.services.player.bind(null, {"xdkFilter":null}));
