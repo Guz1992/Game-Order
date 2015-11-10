@@ -3,9 +3,8 @@ function uib_w_22_popup_controller($scope, $ionicPopup) {
   // A confirm dialog
   $scope.show = function() {
     var confirmPopup = $ionicPopup.show({
-    template: '<input type="password" ng-model="data.wifi">',
-    title: 'Enter Wi-Fi Password',
-    subTitle: 'Please use normal things',
+    template: '<input type="password" ng-model="data.wifi" placeholder="Nome do Jogador">',
+    title: 'Digite o nome do jogador.',
     scope: $scope,
     buttons: [
       { text: 'Cancelar' },
