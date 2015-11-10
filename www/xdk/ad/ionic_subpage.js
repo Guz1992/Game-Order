@@ -52,4 +52,9 @@ window.onpopstate = function(event)
 };
 
 
-$(document).ready(function(){ setTimeout(function(){ var sel = "#mainsub"; window.history.pushState({usubpage:sel}, sel, document.location.origin + document.location.pathname + "#" + sel); }, 300); });
+// $(document).ready(function(){ 
+//     setTimeout(function(){ 
+//         var sel = "#mainsub"; 
+//         window.history.pushState({usubpage:sel}, sel, document.location.origin + document.location.pathname + "#" + sel); 
+//     }, 300); 
+// });

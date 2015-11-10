@@ -1,9 +1,10 @@
 function uib_w_22_popup_controller($scope, $ionicPopup) {
+  $scope.data = {}
 
   // A confirm dialog
   $scope.show = function() {
     var confirmPopup = $ionicPopup.show({
-    template: '<input type="password" ng-model="data.wifi" placeholder="Nome do Jogador">',
+    template: '<input type="text" ng-model="data.wifi" placeholder="Nome do Jogador">',
     title: 'Digite o nome do jogador.',
     scope: $scope,
     buttons: [
@@ -24,7 +25,7 @@ function uib_w_22_popup_controller($scope, $ionicPopup) {
   });
     confirmPopup.then(function(res) {
       if(res) {
-        console.log('You are sure');
+        console.log($scope.data.wifi);
       } else {
         console.log('You are not sure');
       }

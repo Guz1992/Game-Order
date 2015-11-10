@@ -30,8 +30,6 @@ app.consoleLog = function() {           // only emits console.log messages if ap
     }
 } ;
 
-
-
 // App init point (runs on custom app.Ready event from init-dev.js).
 // Runs after underlying device native code and webview/browser is ready.
 // Where you should "kick off" your application by initializing app events, etc.
