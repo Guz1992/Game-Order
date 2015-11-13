@@ -25,10 +25,10 @@
     <script type="application/javascript" src="lib/angular.min.js"></script>
     <script type="application/javascript" src="xdk/ad/angular_support.js"></script>
     <script type="application/javascript" src="xdk/ad/jquery.ba-throttle-debounce.min.js"></script>
-    <script type="application/javascript" src="xhr.js"></script>
+    <!--<script type="application/javascript" src="xhr.js"></script>-->
     <script type="application/javascript" src="xdk/services/service-credentials.js"></script>
     <script type="application/javascript" src="xdk/services/service-methods.js"></script>
-    <script type="application/javascript" src="cordova.js"></script>
+    <!--<script type="application/javascript" src="cordova.js"></script>-->
     <script type="application/javascript" src="xdk/ad/ad_events_data.js"></script>
     <script type="application/javascript" src="js/index_init_services.js"></script>
     <script type="application/javascript" src="xdk/ad/index_setup_services.js"></script>
@@ -48,7 +48,7 @@
             <input type="number" placeholder="Quantidade de jogadores" min="1">
           </label>
           <ion-list class="widget uib_w_6 d-margins" data-uib="ionic/list" data-ver="0" ng-controller="angular_controllers.uib_w_7.controller">
-            <ion-item class="item widget uib_w_7" data-uib="ionic/list_item" data-ver="0" data-sm="player" data-sc="multiple" data-rpath="(base)" ng-repeat="entry in entries" ng-click="select_entry($event, entry)" data-adidx="{{$index}}">{{entry.nome}}</ion-item>
+            <ion-item id="itemData" class="item widget uib_w_7" data-uib="ionic/list_item" data-ver="0" data-sm="player" data-sc="multiple" data-rpath="(base)">{{entry.nome}}</ion-item>
 
           </ion-list>
           <template class="uib-ionic-popup widget uib_w_22 d-margins" data-uib="ionic/popup" data-ver="0"></template>

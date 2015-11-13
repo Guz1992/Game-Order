@@ -25,7 +25,7 @@ function uib_w_22_popup_controller($scope, $ionicPopup) {
   });
     confirmPopup.then(function(res) {
       if(res) {
-        console.log($scope.data.wifi);
+        onCreate($scope.data.wifi);
       } else {
         console.log('You are not sure');
       }

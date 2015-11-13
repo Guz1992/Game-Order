@@ -40,21 +40,23 @@
 
 
 
-            $(document).on(data_event, function(evt, data)
-            {
-                data_path_array.forEach(function(d){ data = data[d]; });
-                data = filter(data, is_object);
-                $scope.safe_apply(function()
-                {
-                    $scope.entries = data;
+            // $(document).on(data_event, function(evt, data)
+            // {
+            //     data_path_array.forEach(function(d){ data = data[d]; });
+            //     data = filter(data, is_object);
+            //     $scope.safe_apply(function()
+            //     {
+            //         $scope.entries = data;
 
-                    var get_data_handler = data_event_handlers.on_data_proplist[event_key];
-                    var data_handler_f   = get_data_handler ? get_data_handler(selector) : function(){};
-                    setTimeout(function(){ data_handler_f(data); }, 200);  //best to execute other code _after_ angular is done.
-                });
-            });
+            //         var get_data_handler = data_event_handlers.on_data_proplist[event_key];
+            //         var data_handler_f   = get_data_handler ? get_data_handler(selector) : function(){};
+            //         setTimeout(function(){ data_handler_f(data); }, 200);  //best to execute other code _after_ angular is done.
+            //     });
+            // });
 
-            $scope.entries = [];
+            // $scope.entries = [];
+
+
 
             var click_handler_f = data_event_handlers.on_click_proplist[event_key](selector);
             var action_f = null; //get_event_handler(selector);

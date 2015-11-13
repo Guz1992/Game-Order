@@ -132,10 +132,11 @@ function deletarPlayersAtuais(listaIdsL,i){
     }  
 }
  
-function onCreate(){
-    var nome = document.itemForm.nome.value;
+function onCreate(value){
+    var nome = value;
+
     if (nome == "") {
-        updateStatus("Erro: 'Nome' e 'Idade' são campos obrigatórios!");
+        updateStatus("Erro: 'Nome' é campo obrigatório!");
     }
     else {
         var query = "insert into player (nome) VALUES (?);";
@@ -199,6 +200,7 @@ function queryAndUpdateOverview(){
         localDB.transaction(function(transaction){
  
             transaction.executeSql(query, [], function(transaction, results){
+
                 for (var i = 0; i < results.rows.length; i++) {
  
                     var row = results.rows.item(i);
@@ -235,14 +237,16 @@ nullDataHandler = function(transaction, results){
 }
  
 // Funções de update
- 
+
+// Atualizar Lista 
 function updateForm(id, nome){
-    document.itemForm.id.value = id;
-    document.itemForm.nome.value = nome;
+    console.log(id + ' ' + nome);
+    // document.itemForm.id.value = id;
+    // document.itemForm.nome.value = nome;
 }
  
 function updateStatus(status){
-    document.getElementById('status').innerHTML = status;
+    console.log(status);
 }
 
 function recolocarFila(listaDeJogadoresL,k){
