@@ -1,7 +1,7 @@
 function myEventHandler() {
     "use strict" ;
     
-    onInit();
+    onInit();	
  }
 
 myEventHandler();

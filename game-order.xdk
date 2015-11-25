@@ -6,7 +6,11 @@
       "projectTypeName": "com.intel.xdk.projecttype.webapp",
       "src": "webapp/template-blank-ad-project/sample.zip",
       "projectGuid": "1ab047f9-53ca-430c-a481-aef47bdd4568",
+<<<<<<< HEAD
       "lastModifiedDate": 1448378475261,
+=======
+      "lastModifiedDate": 1447420350419,
+>>>>>>> d211944a53e260f5f8a32850725289e7bf7fa0f0
       "creationDate": 1446918177396
     },
     "XDK-app-designer": "true",

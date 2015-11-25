@@ -14,7 +14,7 @@ function onInit(){
         else {
             initDB();
             createTables();
-            queryAndUpdateOverview();
+            queryAndUpdateOverview(true);
         }
     } 
     catch (e) {
@@ -29,9 +29,9 @@ function onInit(){
 }
  
 function initDB(){
-    var shortName = 'gameOrder';
+    var shortName = 'gameOrder1';
     var version = '2.8.17';
-    var displayName = 'MyGameOrder';
+    var displayName = 'MyGameOrder1';
     var maxSize = 65536; // Em bytes
     localDB = window.openDatabase(shortName, version, displayName, maxSize);
 }
@@ -54,7 +54,6 @@ function createTables(){
  
  
 //2. Query e visualização de Update
- 
  
 function onUpdate(){
     var id = document.itemForm.id.value;
@@ -132,10 +131,11 @@ function deletarPlayersAtuais(listaIdsL,i){
     }  
 }
  
-function onCreate(){
-    var nome = document.itemForm.nome.value;
+function onCreate(value){
+    var nome = value;
+
     if (nome == "") {
-        updateStatus("Erro: 'Nome' e 'Idade' são campos obrigatórios!");
+        updateStatus("Erro: 'Nome' é campo obrigatório!");
     }
     else {
         var query = "insert into player (nome) VALUES (?);";
@@ -183,15 +183,16 @@ function onSelect(htmlLIElement){
  
 }
  
-function queryAndUpdateOverview(){
- 
-    //Remove as linhas existentes para inserção das novas
-    var dataRows = document.getElementById("itemData").getElementsByClassName("data");
- 
-    while (dataRows.length > 0) {
-        row = dataRows[0];
-        document.getElementById("itemData").removeChild(row);
-    };
+function queryAndUpdateOverview(start){ 
+    if(! start) {
+        //Remove as linhas existentes para inserção das novas
+        var dataRows = document.getElementById("itemData").getElementsByClassName("data");
+     
+        while (dataRows.length > 0) {
+            row = dataRows[0];
+            document.getElementById("itemData").removeChild(row);
+        };
+    }
  
     //Realiza a leitura no banco e cria novas linhas na tabela.
     var query = "SELECT * FROM player;";
@@ -199,18 +200,19 @@ function queryAndUpdateOverview(){
         localDB.transaction(function(transaction){
  
             transaction.executeSql(query, [], function(transaction, results){
+
                 for (var i = 0; i < results.rows.length; i++) {
  
                     var row = results.rows.item(i);
-                    var li = document.createElement("li");
-                    li.setAttribute("id", row['id']);
-                    li.setAttribute("class", "data");
-                    li.setAttribute("onclick", "onSelect(this)");
+                    var ionItem = document.createElement("ion-item");
+                    ionItem.setAttribute("id", row['id']);
+                    ionItem.setAttribute("class", "item widget uib_w_7 data");
+                    ionItem.setAttribute("onclick", "onSelect(this)");
  
-                    var liText = document.createTextNode(row['nome']);
-                    li.appendChild(liText);
+                    var ionText = document.createTextNode(row['nome']);
+                    ionItem.appendChild(ionText);
  
-                    document.getElementById("itemData").appendChild(li);
+                    document.getElementById("itemData").appendChild(ionItem);
                 }
             }, function(transaction, error){
                 updateStatus("Erro: " + error.code + "<br>Mensagem: " + error.message);
@@ -235,21 +237,23 @@ nullDataHandler = function(transaction, results){
 }
  
 // Funções de update
- 
+
+// Atualizar Lista 
 function updateForm(id, nome){
-    document.itemForm.id.value = id;
-    document.itemForm.nome.value = nome;
+    console.log(id + ' ' + nome);
+    // document.itemForm.id.value = id;
+    // document.itemForm.nome.value = nome;
 }
  
 function updateStatus(status){
-    document.getElementById('status').innerHTML = status;
+    console.log(status);
 }
 
 function recolocarFila(listaDeJogadoresL,k){
      
         try {
             localDB.transaction(function(transaction){
-                transaction.executeSql("insert into player (nome) VALUES" + "(" + "'"+listaDeJogadoresL[k]+"'" + ")" + ";", [], function(transaction, results){
+                transaction.executeSql("insert into player (nome) VALUES" + "(" + "'" + listaDeJogadoresL + "'" + ")" + ";", [], function(transaction, results){
                     if (!results.rowsAffected) {
                         updateStatus("Erro: Inserção não realizada");
                     }
@@ -265,19 +269,6 @@ function recolocarFila(listaDeJogadoresL,k){
         catch (e) {
             updateStatus("Erro: INSERT não realizado " + e + ".");
         }   
-}
-
-function separaTimes(listaDeJogadoresL, qty) {
-
-    console.log(listaDeJogadoresL);
-    var time1 = new Array;
-    var time2 = new Array;
-
-    time1 = listaDeJogadoresL.splice(0, qty);
-    time2 = listaDeJogadoresL;
-    console.log([time1, time2]);
-
-    return [time1, time2];
 }
 
 function mesclar(listaTimesL, qty){
@@ -331,8 +322,9 @@ function mesclaGame(){
                     listaDeJogadores[i] = liText.data;
 
                 }
-                    var times = separaTimes(listaDeJogadores, qty);
-                    mesclar(times,qty);
+
+                var times = separaTimes(listaDeJogadores, qty);
+                mesclar(times,qty);
 
          }, function(transaction, error){
                     updateStatus("Erro: " + error.code + "<br>Mensagem: " + error.message);
@@ -347,15 +339,24 @@ function mesclaGame(){
 
 function createGame(){ 
     var qty = document.getElementById("qty_players").value;
-    var listaDeJogadores = new Array;
-    var listaIds = new Array;
 
-    var dataRows = document.getElementById("game").getElementsByClassName("data");
+    //Remove as linhas existentes para inserção das novas
+    var dataRows = document.getElementById("time-a").getElementsByClassName("time-a");
  
     while (dataRows.length > 0) {
         row = dataRows[0];
-        document.getElementById("game").removeChild(row);
+        document.getElementById("time-a").removeChild(row);
     };
+
+    var dataRows = document.getElementById("time-b").getElementsByClassName("time-b");
+ 
+    while (dataRows.length > 0) {
+        row = dataRows[0];
+        document.getElementById("time-b").removeChild(row);
+    };
+
+    var listaDeJogadores = new Array;
+    var listaIds = new Array;
 
     var query = "SELECT * FROM player LIMIT " + qty * 2 + ";";
 
@@ -363,24 +364,30 @@ function createGame(){
         localDB.transaction(function(transaction){
  
             transaction.executeSql(query, [], function(transaction, results){
-                for (var i = 0; i < results.rows.length; i++) {
-                    var row = results.rows.item(i);
-                    var li = document.createElement("li");
-                    li.setAttribute("id", row['id']);
-                    listaIds[i] = li.id;
+                var times = results.rows;
+
+                for (var i = 0; i < qty; i++) {
+                    var ionItem = document.createElement("ion-item");
+                    ionItem.setAttribute("id", times[i].id);
+                    ionItem.setAttribute("class", "item widget time-a");
+                    ionItem.setAttribute("onclick", "onSelect(this)");
  
-                    var liText = document.createTextNode(row['nome']);
-                    listaDeJogadores[i] = liText.data;
-
+                    var ionText = document.createTextNode(times[i].nome);
+                    ionItem.appendChild(ionText);
+ 
+                    document.getElementById("time-a").appendChild(ionItem);
                 }
-                
-                var times = separaTimes(listaDeJogadores, qty);
-                
-                mesclar(times,qty);
 
-                for(var j = 0; j < listaIds.length; j++){
-                    deletarPlayersAtuais(listaIds, j);
-                    recolocarFila(listaDeJogadores, j);
+                for (var i = qty; i < qty * 2; i++) {
+                    var ionItem = document.createElement("ion-item");
+                    ionItem.setAttribute("id", times[i].id);
+                    ionItem.setAttribute("class", "item widget time-b");
+                    ionItem.setAttribute("onclick", "onSelect(this)");
+ 
+                    var ionText = document.createTextNode(times[i].nome);
+                    ionItem.appendChild(ionText);
+ 
+                    document.getElementById("time-b").appendChild(ionItem);
                 }
 
             }, function(transaction, error){
@@ -391,5 +398,21 @@ function createGame(){
     catch (e) {
         updateStatus("Error: SELECT não realizado " + e + ".");
     }
+
+}
+
+function removerTime(data){
+    var jogadoresTime = document.getElementById(data).getElementsByClassName(data);
+    var size = jogadoresTime.length;
+
+    for(var i = 0; i < size; i++){
+        console.log(jogadoresTime[i].getAttribute("id"));
+        console.log(jogadoresTime[i].innerHTML);
+    }
+
+    // for(var j = 0; j < listaIds.length; j++){
+    //                 deletarPlayersAtuais(listaIds, j);
+    //                 recolocarFila(times[j].nome);
+    //             }
 
 }
