@@ -204,15 +204,15 @@ function queryAndUpdateOverview(){
                 for (var i = 0; i < results.rows.length; i++) {
  
                     var row = results.rows.item(i);
-                    var li = document.createElement("li");
-                    li.setAttribute("id", row['id']);
-                    li.setAttribute("class", "data");
-                    li.setAttribute("onclick", "onSelect(this)");
+                    var ionItem = document.createElement("ion-item");
+                    ionItem.setAttribute("id", row['id']);
+                    ionItem.setAttribute("class", "item widget uib_w_7 data");
+                    ionItem.setAttribute("onclick", "onSelect(this)");
  
-                    var liText = document.createTextNode(row['nome']);
-                    li.appendChild(liText);
+                    var ionText = document.createTextNode(row['nome']);
+                    ionItem.appendChild(ionText);
  
-                    document.getElementById("itemData").appendChild(li);
+                    document.getElementById("itemData").appendChild(ionItem);
                 }
             }, function(transaction, error){
                 updateStatus("Erro: " + error.code + "<br>Mensagem: " + error.message);
