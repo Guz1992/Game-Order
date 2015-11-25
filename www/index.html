@@ -41,14 +41,18 @@
         <div class="upage-content ac0 content-area vertical-col left" id="page_8_69">
 
           <div class="button-bar widget uib_w_2 d-margins" data-uib="ionic/button_bar" data-ver="0">
-            <button class="button widget uib_w_3" data-uib="ionic/button" data-ver="0" id="create-game">Criar Jogo</button>
+            <button class="button widget uib_w_3" data-uib="ionic/button" data-ver="0" id="create-game" onclick="createGame()">Criar Jogo</button>
             <button class="button widget uib_w_4 ion ion-android-add" data-uib="ionic/button" data-ver="0" id="add-player" ng-controller="uib_w_22_popup_controller" ng-click="show()">Jogador</button>
           </div>
           <label class="item item-input widget uib_w_5 d-margins" data-uib="ionic/input" data-ver="0">
-            <input type="number" placeholder="Quantidade de jogadores" min="1">
+            <input id="qty_players" type="number" placeholder="Quantidade de jogadores" min="1">
           </label>
+
+          <!-- Begin Lista De jogadores -->
           <ion-list id="itemData" class="widget uib_w_6 d-margins">
           </ion-list>
+          <!-- END Lista De jogadores -->
+
           <template class="uib-ionic-popup widget uib_w_22 d-margins" data-uib="ionic/popup" data-ver="0"></template>
         </div>
         <ion-header-bar class="bar inner-element uib_w_1 bar-positive bar-header" data-uib="ionic/header" data-ver="0" align-title="center">
@@ -65,23 +69,24 @@
             <div class="col uib_col_1 col-0_6-12" data-uib="layout/col" data-ver="0">
               <div class="widget-container content-area vertical-col">
 
-                <button class="button widget uib_w_24 d-margins button-calm" data-uib="ionic/button" data-ver="0" id="time-a" ng-controller="uib_w_26_popup_controller" ng-click="show('Time A')">Time A</button>
-                <ion-list class="widget uib_w_11 d-margins" data-uib="ionic/list" data-ver="0">
-                  <ion-item class="item widget uib_w_12" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
-                  <ion-item class="item widget uib_w_13" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
-                  <ion-item class="item widget uib_w_14" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
-                </ion-list><span class="uib_shim"></span>
+                <button class="button widget uib_w_24 d-margins button-calm" id="btn-time-a" onclick="removerTime('time-a')">Time A</button>
+          
+                <!-- Begin TIME A -->
+                <ion-list id="time-a" class="widget uib_w_11 d-margins" data-uib="ionic/list" data-ver="0">
+                </ion-list><span class="uib_shim"></span>          
+                <!-- END TIME A -->
+
               </div>
             </div>
             <div class="col uib_col_2 col-0_6-12" data-uib="layout/col" data-ver="0">
               <div class="widget-container content-area vertical-col">
 
-                <button class="button widget uib_w_25 d-margins button-calm" data-uib="ionic/button" data-ver="0" id="time-b" ng-controller="uib_w_26_popup_controller" ng-click="show('Time B')">Time B</button>
-                <ion-list class="widget uib_w_15 d-margins" data-uib="ionic/list" data-ver="0">
-                  <ion-item class="item widget uib_w_16" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
-                  <ion-item class="item widget uib_w_17" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
-                  <ion-item class="item widget uib_w_18" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
+                <button class="button widget uib_w_25 d-margins button-calm" id="btn-time-b" onclick="removerTime('time-b')">Time B</button>
+
+                <!-- Begin TIME B -->
+                <ion-list id="time-b" class="widget uib_w_15 d-margins" data-uib="ionic/list" data-ver="0">
                 </ion-list><span class="uib_shim"></span>
+                <!-- End TIME B -->
               </div>
             </div>
             <span class="uib_shim"></span>
