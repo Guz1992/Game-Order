@@ -187,12 +187,12 @@ function onSelect(htmlLIElement){
 function queryAndUpdateOverview(){
  
     //Remove as linhas existentes para inserção das novas
-    var dataRows = document.getElementById("itemData").getElementsByClassName("data");
+    // var dataRows = document.getElementById("itemData").getElementsByClassName("data");
  
-    while (dataRows.length > 0) {
-        row = dataRows[0];
-        document.getElementById("itemData").removeChild(row);
-    };
+    // while (dataRows.length > 0) {
+    //     row = dataRows[0];
+    //     document.getElementById("itemData").removeChild(row);
+    // };
  
     //Realiza a leitura no banco e cria novas linhas na tabela.
     var query = "SELECT * FROM player;";
