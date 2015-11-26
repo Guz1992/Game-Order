@@ -412,11 +412,7 @@ function removerTime(data){
         deletarPlayersAtuais(ids,i);
         recolocarFila(jogadoresTime[i].innerHTML);
     }
-        //console.log(jogadoresTime[i].innerHTML);
-
-    // for(var j = 0; j < listaIds.length; j++){
-    //                 deletarPlayersAtuais(listaIds, j);
-    //                 recolocarFila(times[j].nome);
-    //             }
+    document.getElementById("qty_players").value = size;
+    createGame();
 
 }
