@@ -161,24 +161,25 @@ function onCreate(value){
  
 function onSelect(htmlLIElement){
     var id = htmlLIElement.getAttribute("id");
- 
-    query = "SELECT * FROM player where id=?;";
+    
+    var query = "delete from player where id=?;";
     try {
         localDB.transaction(function(transaction){
  
             transaction.executeSql(query, [id], function(transaction, results){
- 
-                var row = results.rows.item(0);
- 
-                updateForm(row['id'], row['nome']);
- 
-            }, function(transaction, error){
-                updateStatus("Erro: " + error.code + "<br>Mensagem: " + error.message);
-            });
+                if (!results.rowsAffected) {
+                    updateStatus("Erro: Delete não realizado.");
+                }
+                else {
+                    updateForm("", "", "");
+                    updateStatus("Linhas deletadas:" + results.rowsAffected);
+                    queryAndUpdateOverview();
+                }
+            }, errorHandler);
         });
     } 
     catch (e) {
-        updateStatus("Error: SELECT não realizado " + e + ".");
+        updateStatus("Erro: DELETE não realizado " + e + ".");
     }
  
 }
@@ -207,7 +208,7 @@ function queryAndUpdateOverview(start){
                     var ionItem = document.createElement("ion-item");
                     ionItem.setAttribute("id", row['id']);
                     ionItem.setAttribute("class", "item widget uib_w_7 data");
-                    ionItem.setAttribute("onclick", "onSelect(this)");
+                    ionItem.setAttribute("onclick", "confirmar(this)");
  
                     var ionText = document.createTextNode(row['nome']);
                     ionItem.appendChild(ionText);
@@ -221,6 +222,25 @@ function queryAndUpdateOverview(start){
     } 
     catch (e) {
         updateStatus("Error: SELECT não realizado " + e + ".");
+    }
+}
+
+function confirmar(htmlLIElement){
+    var resp = confirm("Tem certeza que deseja excluir esse player?");
+    if(resp == true){
+        onSelect(htmlLIElement);
+    }else{
+        console.log("null");
+    }
+}
+
+function confirmarAfter(htmlLIElement){
+    var resp = confirm("Tem certeza que deseja excluir esse player?");
+    if(resp == true){
+        onSelect(htmlLIElement);
+        createGame();
+    }else{
+        console.log("null");
     }
 }
  
@@ -370,7 +390,7 @@ function createGame(){
                     var ionItem = document.createElement("ion-item");
                     ionItem.setAttribute("id", times[i].id);
                     ionItem.setAttribute("class", "item widget time-a");
-                    ionItem.setAttribute("onclick", "onSelect(this)");
+                    ionItem.setAttribute("onclick", "confirmarAfter(this)");
  
                     var ionText = document.createTextNode(times[i].nome);
                     ionItem.appendChild(ionText);
@@ -382,7 +402,7 @@ function createGame(){
                     var ionItem = document.createElement("ion-item");
                     ionItem.setAttribute("id", times[i].id);
                     ionItem.setAttribute("class", "item widget time-b");
-                    ionItem.setAttribute("onclick", "onSelect(this)");
+                    ionItem.setAttribute("onclick", "confirmarAfter(this)");
  
                     var ionText = document.createTextNode(times[i].nome);
                     ionItem.appendChild(ionText);
