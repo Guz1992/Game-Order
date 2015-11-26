@@ -249,7 +249,7 @@ function updateStatus(status){
     console.log(status);
 }
 
-function recolocarFila(listaDeJogadoresL,k){
+function recolocarFila(listaDeJogadoresL){
      
         try {
             localDB.transaction(function(transaction){
@@ -404,11 +404,15 @@ function createGame(){
 function removerTime(data){
     var jogadoresTime = document.getElementById(data).getElementsByClassName(data);
     var size = jogadoresTime.length;
+    var ids = new Array
 
     for(var i = 0; i < size; i++){
-        console.log(jogadoresTime[i].getAttribute("id"));
-        console.log(jogadoresTime[i].innerHTML);
+        id = jogadoresTime[i].getAttribute("id");
+        ids[i] = id;   
+        deletarPlayersAtuais(ids,i);
+        recolocarFila(jogadoresTime[i].innerHTML);
     }
+        //console.log(jogadoresTime[i].innerHTML);
 
     // for(var j = 0; j < listaIds.length; j++){
     //                 deletarPlayersAtuais(listaIds, j);
