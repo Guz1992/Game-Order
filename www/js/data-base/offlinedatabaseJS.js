@@ -375,8 +375,8 @@ function createGame(){
         document.getElementById("time-b").removeChild(row);
     };
 
-    var listaDeJogadores = new Array;
-    var listaIds = new Array;
+    var times =  new Array;
+
 
     var query = "SELECT * FROM player LIMIT " + qty * 2 + ";";
 
@@ -384,15 +384,19 @@ function createGame(){
         localDB.transaction(function(transaction){
  
             transaction.executeSql(query, [], function(transaction, results){
-                var times = results.rows;
+                
+                for(var i = 0; i < qty * 2; i++){
+                    times[i] = results.rows.item(i);
+                }
 
                 for (var i = 0; i < qty; i++) {
+                    console.log(times);
                     var ionItem = document.createElement("ion-item");
-                    ionItem.setAttribute("id", times[i].id);
+                    ionItem.setAttribute("id", times[i]['id']);
                     ionItem.setAttribute("class", "item widget time-a");
                     ionItem.setAttribute("onclick", "confirmarAfter(this)");
  
-                    var ionText = document.createTextNode(times[i].nome);
+                    var ionText = document.createTextNode(times[i]['nome']);
                     ionItem.appendChild(ionText);
  
                     document.getElementById("time-a").appendChild(ionItem);
@@ -400,11 +404,11 @@ function createGame(){
 
                 for (var i = qty; i < qty * 2; i++) {
                     var ionItem = document.createElement("ion-item");
-                    ionItem.setAttribute("id", times[i].id);
+                    ionItem.setAttribute("id", times[i]['id']);
                     ionItem.setAttribute("class", "item widget time-b");
                     ionItem.setAttribute("onclick", "confirmarAfter(this)");
  
-                    var ionText = document.createTextNode(times[i].nome);
+                    var ionText = document.createTextNode(times[i]['nome']);
                     ionItem.appendChild(ionText);
  
                     document.getElementById("time-b").appendChild(ionItem);
