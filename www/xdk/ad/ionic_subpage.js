@@ -33,7 +33,12 @@ function activate_page(sel, have_state)
         $dn.parents("body").find(".upage").addClass("hidden");
         $dn.removeClass("hidden");
         
-        if(!have_state){ window.history.pushState({upage:sel}, sel, document.location.origin + document.location.pathname +sel); }
+        // if(!have_state){ 
+        //     window.history.pushState(
+        //         {upage:sel}, 
+        //         sel, 
+        //         document.location.origin + document.location.pathname +sel); 
+        // }
     }
     $(document).trigger("pagechange");
 }

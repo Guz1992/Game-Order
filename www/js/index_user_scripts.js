@@ -31,5 +31,5 @@
     });
     
     }
- document.addEventListener("app.Ready", register_event_handlers, false);
+    document.addEventListener("app.Ready", register_event_handlers, false);
 })();
