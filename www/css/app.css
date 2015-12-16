@@ -42,3 +42,8 @@ body {
     background: white ;
     color: black ;
 }
+
+.hg-tool-bar {
+    position: absolute;
+    top: -5px
+}
