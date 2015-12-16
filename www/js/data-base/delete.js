@@ -61,3 +61,44 @@ function removerTime(data){
     createGame();
 
 }
+
+function deletePlayer(htmlLIElement, place){
+    var name = htmlLIElement.innerHTML;
+    var resp = confirm("Tem certeza que deseja excluir: " + name + "?");
+
+    if (resp == true) {
+        remove(htmlLIElement, place);
+    } else {
+        console.log("Não foi removido!");
+    }
+}
+
+function remove(htmlLIElement, place){
+    var id = htmlLIElement.getAttribute("id");
+    
+    var query = "delete from player where id=?;";
+    try {
+        localDB.transaction(function(transaction){ 
+            transaction.executeSql(query, [id], function(transaction, results){
+                if (!results.rowsAffected) {
+                    updateStatus("Erro: Delete não realizado.");
+
+                } else {
+                    updateStatus("Linhas deletadas:" + results.rowsAffected);
+                    if (place == 'index') { // Se for da lista de jogadores da tela inicial
+                        queryAndUpdateOverview();
+                    }
+
+                    if (place == 'game') { // Se for da tela da listagem dos times
+                        queryAndUpdateOverview();
+                        console.log('game');
+                    }
+
+                }
+            }, errorHandler);
+        });
+    } catch (e) {
+        updateStatus("Erro: DELETE não realizado " + e + ".");
+        
+    }
+}
