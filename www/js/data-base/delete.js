@@ -62,6 +62,7 @@ function removerTime(data){
 
 }
 
+// Deleta JOGADOR 
 function deletePlayer(htmlLIElement, place){
     var name = htmlLIElement.innerHTML;
     var resp = confirm("Tem certeza que deseja excluir: " + name + "?");
@@ -90,8 +91,7 @@ function remove(htmlLIElement, place){
                     }
 
                     if (place == 'game') { // Se for da tela da listagem dos times
-                        queryAndUpdateOverview();
-                        console.log('game');
+                        atualizaTimes();
                     }
 
                 }
@@ -99,6 +99,6 @@ function remove(htmlLIElement, place){
         });
     } catch (e) {
         updateStatus("Erro: DELETE não realizado " + e + ".");
-        
+
     }
 }

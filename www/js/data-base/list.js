@@ -38,8 +38,11 @@ function queryAndUpdateOverview(start){
     }
 }
 
+function atualizaTimes() {
+
+}
+
 function recolocarFila(listaDeJogadoresL){
-     
         try {
             localDB.transaction(function(transaction){
                 transaction.executeSql("insert into player (nome) VALUES" + "(" + "'" + listaDeJogadoresL + "'" + ")" + ";", [], function(transaction, results){

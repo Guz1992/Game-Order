@@ -14,7 +14,6 @@ function uib_w_22_popup_controller($scope, $ionicPopup) {
           type: 'button-positive',
           onTap: function(e) {
             if (!$scope.data.wifi) {
-              //don't allow the user to close unless he enters wifi password
               e.preventDefault();
             } else {
               return $scope.data.wifi;
